@@ -20,14 +20,16 @@ export const App = () => {
    const handleNewComent = async (event) => {
       event.preventDefault();
 
-      await supabase.from('coments')
-      .insert([
-         { content: event.target.coment.value },
-      ])
-
-      event.target.coment.value = ""
-
-      getDatabase()
+      if (event.target.coment.value != "") {
+         await supabase.from('coments')
+         .insert([
+            { content: event.target.coment.value },
+         ])
+   
+         event.target.coment.value = ""
+   
+         getDatabase()
+      }
    }
 
    return (
