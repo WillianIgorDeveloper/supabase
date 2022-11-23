@@ -14,7 +14,7 @@ export const App = () => {
 
       setTimeout(() => {
          window.scrollTo(0, (document.body.scrollHeight + 1000));
-      }, 500)
+      }, 100)
    }
    
    useEffect(()=>{
@@ -51,7 +51,7 @@ export const App = () => {
 
          <form onSubmit={handleNewComent} method='POST' className='bg-nord-frost-2 p-2 flex fixed bottom-0 left-0 w-full'>
             <label htmlFor="coment" className='hidden'>Deixe o seu comentário!</label>
-            <input type="text" name="coment" id="coment" className='flex-1 bg-nord-snowStorm-1 rounded text-nord-polarNight-1 px-4 focus:outline-none text-lg' />
+            <textarea name="coment" id="coment" rows="1" cols="1" resi className='resize-none flex-1 bg-nord-snowStorm-1 rounded text-nord-polarNight-1 py-2 px-4 focus:outline-none text-lg' />
             <button type='submit' className='p-2 text-2xl animate-bounce'><PaperPlane /></button>
          </form>
       </div>
