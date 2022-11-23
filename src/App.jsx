@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 
 export const App = () => {
 
-   const supabaseUrl = "https://gyzcxhkyewpynpskfzxu.supabase.co"
-   const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd5emN4aGt5ZXdweW5wc2tmenh1Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NjkyMTE5MjUsImV4cCI6MTk4NDc4NzkyNX0.T1sXBjjprKuHYNjyUdzoA45SU7g2juPCVewGSEBoiUw"
+   const supabaseUrl = import.meta.env.VITE_SUPABASE_URL
+   const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY
    const supabase = createClient(supabaseUrl, supabaseKey)
 
    const [coments, setComents] = useState([])
