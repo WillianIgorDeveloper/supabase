@@ -13,7 +13,12 @@ export const App = () => {
       setComents(data)
    }
 
+   const scroll = () => {
+      window.scrollTo(0, 100);
+   }
+
    useEffect(()=>{
+      window.scrollTo(0, document.body.scrollHeight);
       getDatabase()
    },[])
 
@@ -27,14 +32,16 @@ export const App = () => {
          ])
    
          event.target.coment.value = ""
-   
+         
          getDatabase()
+         
+         window.scrollTo(0, document.body.scrollHeight);
       }
    }
 
    return (
-      <div className='flex flex-col h-screen'>
-         <div className='flex-1 overflow-y-auto p-6 flex flex-col gap-7 scrollbar-thin scrollbar-thumb-nord-frost-1'>
+      <div className='flex flex-col pb-14'>
+         <div className='p-6 flex flex-col gap-7'>
             {
                coments.map(element => {
                   return (
@@ -44,7 +51,7 @@ export const App = () => {
             }
          </div>
 
-         <form onSubmit={handleNewComent} method='POST' className='bg-nord-frost-2 p-2 flex'>
+         <form onSubmit={handleNewComent} method='POST' className='bg-nord-frost-2 p-2 flex fixed bottom-0 left-0 w-full'>
             <label htmlFor="coment" className='hidden'>Deixe o seu comentário!</label>
             <input type="text" name="coment" id="coment" className='flex-1 bg-nord-snowStorm-1 rounded text-nord-polarNight-1 px-4 focus:outline-none text-lg' />
             <button type='submit' className='p-2 text-2xl animate-bounce'><PaperPlane /></button>
