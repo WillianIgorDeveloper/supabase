@@ -11,14 +11,13 @@ export const App = () => {
       .from('coments')
       .select('*')
       setComents(data)
-   }
 
-   const scroll = () => {
-      window.scrollTo(0, 100);
+      setTimeout(() => {
+         window.scrollTo(0, (document.body.scrollHeight + 1000));
+      }, 500)
    }
-
+   
    useEffect(()=>{
-      window.scrollTo(0, document.body.scrollHeight);
       getDatabase()
    },[])
 
@@ -34,10 +33,9 @@ export const App = () => {
          event.target.coment.value = ""
          
          getDatabase()
-         
-         window.scrollTo(0, document.body.scrollHeight);
       }
    }
+
 
    return (
       <div className='flex flex-col pb-14'>
