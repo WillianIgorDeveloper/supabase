@@ -25,6 +25,8 @@ export const App = () => {
          { content: event.target.coment.value },
       ])
 
+      event.target.coment.value = ""
+
       getDatabase()
    }
 
