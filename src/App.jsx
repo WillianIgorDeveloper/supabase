@@ -4,13 +4,14 @@ import { supabase } from './supabaseClient'
 
 export const App = () => {
 
-   const [coments, setComents] = useState([])
+   const [comentarys, setComentarys] = useState([])
 
    const getDatabase = async function  () {
       const { data, error } = await supabase
       .from('coments')
       .select('*')
-      setComents(data)
+
+      setComentarys(data)
 
       setTimeout(() => {
          window.scrollTo(0, (document.body.scrollHeight + 1000));
@@ -19,6 +20,16 @@ export const App = () => {
    
    useEffect(()=>{
       getDatabase()
+
+      supabase.channel('coments')
+      .on(
+         'postgres_changes', 
+         { event: 'INSERT', schema: 'public', table: 'coments' },
+         (payload) => {
+            getDatabase()
+         }
+      )
+      .subscribe()
    },[])
 
    const handleNewComent = async (event) => {
@@ -36,12 +47,11 @@ export const App = () => {
       }
    }
 
-
    return (
       <div className='flex flex-col pb-14'>
          <div className='p-6 flex flex-col gap-7'>
             {
-               coments.map(element => {
+               comentarys.map(element => {
                   return (
                      <p className='p-3 bg-nord-frost-1 rounded-lg text-nord-polarNight-1 font-medium' key={element.id}>{element.content}</p>
                   )
